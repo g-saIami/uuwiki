@@ -3,98 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uncanny Database</title>
-  <meta name="description" content="A sample wiki page demonstrating all available components, tables, image boxes, and HTML classes.">
+  <title>UNCANNY UDARNIK</title>
+  <meta name="description" content="Uncanny Wiki — the central knowledge base. Explore main portals, documentation, and reference archives.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-root="../">
+<body data-root="./">
 
-  <!-- Dynamic Header injected via js/search.js -->
+  <!-- header -->
   <div id="wiki-header"></div>
 
-  <!-- ===== EDITABLE ===== -->
+  <!-- ===== CONTENT ===== -->
   <main class="page-wrap" id="main-content">
 
     <div class="heading-divider">
-      <h1>Welcome to the Wiki</h1>
+      <h1>UNCANNY UDARNIK DATABASE</h1>
     </div>
 
-    <p>
-      This is the central knowledge base. Browse articles by category, search for specific topics,
-      or use the navigation above to explore guides and resources.
-    </p>
-
-    <hr>
-
-    <!-- Featured Section -->
-    <h2>Featured Articles</h2>
-
-    <div class="grid-2">
-      <div class="content-box content-box--accent">
-        <h3 class="mt-0">Sample Page</h3>
-        <p class="text-small">A comprehensive demo showcasing every component and HTML class available in the wiki stylesheet.</p>
-        <a href="pages/sample.html">Read More →</a>
+    <!-- Description -->
+    <div class="content-box content-box--accent">
+      <div class="image-box image-box--medium mt-0 mb-3" style="border: 1px solid var(--accent-dim); margin-top:0;">
+        <img src="assets/uubanner.png" alt="Uncanny Udarnik Banner">
       </div>
-      <div class="content-box">
-        <h3 class="mt-0">Getting Started</h3>
-        <p class="text-small">Learn how to create new wiki pages, use the template, and add content with the available utility classes.</p>
-        <a href="pages/sample.html">Read More →</a>
-      </div>
+      <h2 class="mt-0 text-accent">UDARNIK DATABASE RESOURCES</h2>
+      <p>
+        the <strong>Uncanny Udarnik Database</strong> is the main storage for information about the international corporation Uncanny Udarnik and it's subsidaries/sections.
+      </p>
+      <p class="mb-0 text-small text-muted">
+        Use the main portals below or press <kbd>Ctrl + K</kbd> anywhere on the screen to search the entire wiki directory.
+      </p>
     </div>
 
     <hr>
 
-    <!-- Quick Info Panel -->
+    <!-- Main Pages Portals -->
+    <div class="heading-divider">
+      <h2>Main Portals</h2>
+    </div>
+
+    <div class="portal-grid">
+      
+      <!-- Portal 1: System Showcase -->
+      <a href="pages/sample.html" class="portal-card">
+        <img src="assets/uubanner.png" alt="System Showcase" class="portal-card__image">
+        <div class="portal-card__content">
+          <div class="portal-card__title">System Showcase</div>
+          <p class="portal-card__description">
+            Explore the comprehensive layout showcase, component specifications, tables, info panels, and reference formatting for the wiki.
+          </p>
+          <div class="portal-card__footer">Enter Portal</div>
+        </div>
+      </a>
+
+      <!-- Portal 2: Database & Archives -->
+      <a href="pages/sample.html" class="portal-card">
+        <img src="https://placehold.co/600x300/0f1628/4682B4?text=Database+%26+Archives" alt="Database & Archives" class="portal-card__image">
+        <div class="portal-card__content">
+          <div class="portal-card__title">Database & Archives</div>
+          <p class="portal-card__description">
+            Access central catalog records, classified entity files, research documentation, and archived system logs.
+          </p>
+          <div class="portal-card__footer">Enter Portal</div>
+        </div>
+      </a>
+
+      <!-- Portal 3: Guides & Protocols -->
+      <a href="pages/sample.html" class="portal-card">
+        <img src="https://placehold.co/600x300/0f1628/4682B4?text=Guides+%26+Protocols" alt="Guides & Protocols" class="portal-card__image">
+        <div class="portal-card__content">
+          <div class="portal-card__title">Guides & Protocols</div>
+          <p class="portal-card__description">
+            Standard operating procedures, page creation templates, styling rules, and technical guidelines for contributors.
+          </p>
+          <div class="portal-card__footer">Enter Portal</div>
+        </div>
+      </a>
+
+      <!-- Portal 4: Technical Diagnostics -->
+      <a href="pages/sample.html" class="portal-card">
+        <img src="https://placehold.co/600x300/0f1628/4682B4?text=Technical+Diagnostics" alt="Technical Diagnostics" class="portal-card__image">
+        <div class="portal-card__content">
+          <div class="portal-card__title">Technical Diagnostics</div>
+          <p class="portal-card__description">
+            System status monitoring, terminal diagnostics, search index metrics, and infrastructure health reports.
+          </p>
+          <div class="portal-card__footer">Enter Portal</div>
+        </div>
+      </a>
+
+    </div>
+
+    <hr>
+
+    <!-- System Status Summary -->
     <div class="info-panel">
-      <div class="info-panel__header">Wiki Status</div>
+      <div class="info-panel__header">Terminal Status</div>
       <div class="info-panel__row">
-        <div class="info-panel__label">Status</div>
-        <div class="info-panel__value">Active</div>
+        <div class="info-panel__label">System State</div>
+        <div class="info-panel__value">not hacked</div>
       </div>
-      <div class="info-panel__row">
-        <div class="info-panel__label">Pages</div>
-        <div class="info-panel__value">2</div>
-      </div>
-      <div class="info-panel__row">
-        <div class="info-panel__label">Last Updated</div>
-        <div class="info-panel__value">September 2026</div>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Recent Tags -->
-    <h2>Browse by Tag</h2>
-    <div>
-      <span class="tag">wiki</span>
-      <span class="tag">guide</span>
-      <span class="tag">template</span>
-      <span class="tag">components</span>
-      <span class="tag">demo</span>
-      <span class="tag">uncanny</span>
     </div>
 
   </main>
 
   <!-- ===== Footer ===== -->
   <footer class="site-footer" id="site-footer">
-    <p>Uncanny Udarnik Database &copy; 2026</p>
+    <p>Uncanny Udarnik &copy; 2026</p>
   </footer>
-
-  <!-- ===== Search Modal ===== -->
-  <div class="search-overlay" id="search-overlay">
-    <div class="search-modal" role="dialog" aria-label="Search">
-      <div class="search-modal__input-wrap">
-        <span class="search-modal__icon">⌕</span>
-        <input type="text" id="search-input" class="search-modal__input" placeholder="Search pages…" autocomplete="off">
-      </div>
-      <div class="search-modal__results" id="search-results">
-        <div class="search-modal__empty">Type to search…</div>
-      </div>
-    </div>
-  </div>
 
   <script src="js/search.js"></script>
 </body>
