@@ -1,39 +1,16 @@
 /* ============================================================
    UNCANNY WIKI — Core JS Module
-   Header Injection, Search Engine, & Dynamic UI Logic
+   Header Injection, Search Engine & Boot Sequence
    ============================================================ */
 
 (function () {
   'use strict';
-
-  // ---- Page Registry -------------------------------------------------
-  let PAGE_INDEX = [];
-
-  async function loadIndex() {
-    const rootPath = getRootPath();
-    try {
-      const res = await fetch(rootPath + 'data/pages.json');
-      if (res.ok) {
-        PAGE_INDEX = await res.json();
-        // Adjust relative URLs in search index based on current depth
-        PAGE_INDEX = PAGE_INDEX.map(p => ({
-          ...p,
-          url: rootPath + p.url.replace(/^\.\//, '')
-        }));
-      }
-    } catch (_) {
-      if (window.WIKI_PAGES) {
-        PAGE_INDEX = window.WIKI_PAGES;
-      }
-    }
-  }
 
   // ---- Path Helper ---------------------------------------------------
   function getRootPath() {
     if (document.body && document.body.dataset.root) {
       return document.body.dataset.root;
     }
-    // Check path depth
     const pathname = window.location.pathname;
     if (pathname.includes('/pages/')) {
       return '../';
@@ -62,26 +39,24 @@
           <!-- Center: Navigation Categories -->
           <nav class="main-nav" id="main-nav">
             <a href="${root}index.html" class="${isHome ? 'active' : ''}">Home</a>
-            <a href="${root}pages/sample.html" class="${isSample ? 'active' : ''}">Sample Page</a>
-            <a href="#">Articles</a>
-            <a href="#">Guides</a>
-            <a href="#">About</a>
+            <a href="${root}pages/sample.html" class="${isSample ? 'active' : ''}">N/A</a>
+            <a href="#">N/A</a>
+            <a href="#">N/A</a>
+            <a href="#">N/A</a>
           </nav>
 
           <!-- Right: Search -->
           <div class="header-actions">
-            <a href="#" data-action="open-search" class="search-trigger" aria-label="Search">⌕ Search <span class="search-shortcut">Ctrl K</span></a>
+            <a href="#" data-action="open-search" class="search-trigger" aria-label="Search">⌕ Search</a>
           </div>
         </div>
       </header>
     `;
 
-    // Inject into <header id="wiki-header"> or <div id="wiki-header"> or replace top header
     let target = document.getElementById('wiki-header') || document.querySelector('.site-header-group');
     if (target) {
       target.outerHTML = headerHTML;
     } else {
-      // Prepend to body or before breadcrumbs
       const breadcrumbs = document.getElementById('breadcrumbs') || document.getElementById('main-content');
       if (breadcrumbs) {
         breadcrumbs.insertAdjacentHTML('beforebegin', headerHTML);
@@ -110,12 +85,122 @@
     document.body.insertAdjacentHTML('beforeend', modalHTML);
   }
 
-  // ---- DOM References ------------------------------------------------
+  // ---- Terminal Boot Sequence Overlay --------------------------------
+  function initBootScreen() {
+    // Only run full boot sequence once per session (unless force reboot requested)
+    if (sessionStorage.getItem('wiki_booted') === 'true') {
+      return;
+    }
+
+    const root = getRootPath();
+    const bootHTML = `
+      <div class="boot-overlay" id="boot-overlay">
+        <div class="boot-container">
+          <img src="${root}assets/ust.png" alt="Uncanny Udarnik" class="boot-logo">
+          <div class="boot-progress-wrap">
+            <div class="boot-progress-bar" id="boot-bar"></div>
+            <div class="boot-progress-text" id="boot-text">0%</div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', bootHTML);
+
+    const overlay = document.getElementById('boot-overlay');
+    const bar = document.getElementById('boot-bar');
+    const text = document.getElementById('boot-text');
+    let progress = 0;
+    let completed = false;
+
+    function dismissBoot() {
+      if (completed) return;
+      completed = true;
+      sessionStorage.setItem('wiki_booted', 'true');
+      overlay.classList.add('hidden');
+      setTimeout(() => {
+        if (overlay && overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+      }, 500);
+    }
+
+    const interval = setInterval(() => {
+      if (completed) {
+        clearInterval(interval);
+        return;
+      }
+
+      progress += 1;
+
+      if (bar) bar.style.width = progress + '%';
+      if (text) text.textContent = `${progress}%`;
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(dismissBoot, 400);
+      }
+    }, 100);
+  }
+
+  // ---- Page Change CRT Glitch Transition -----------------------------
+  function initPageTransitions() {
+    const transitionHTML = `
+      <div class="crt-transition-overlay" id="crt-transition-overlay">
+        <div class="crt-transition-line"></div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', transitionHTML);
+
+    const overlay = document.getElementById('crt-transition-overlay');
+
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      const target = link.getAttribute('target');
+
+      // Ignore non-navigation links, JS actions, or external tabs
+      if (!href || href.startsWith('#') || href.startsWith('javascript:') || target === '_blank') {
+        return;
+      }
+
+      // Trigger CRT transition flash
+      e.preventDefault();
+      if (overlay) overlay.classList.add('active');
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 180);
+    });
+  }
+
+  // ---- Search Engine -------------------------------------------------
+  let PAGE_INDEX = [];
+
+  async function loadIndex() {
+    const rootPath = getRootPath();
+    try {
+      const res = await fetch(rootPath + 'data/pages.json');
+      if (res.ok) {
+        PAGE_INDEX = await res.json();
+        PAGE_INDEX = PAGE_INDEX.map(p => ({
+          ...p,
+          url: rootPath + p.url.replace(/^\.\//, '')
+        }));
+      }
+    } catch (_) {
+      if (window.WIKI_PAGES) {
+        PAGE_INDEX = window.WIKI_PAGES;
+      }
+    }
+  }
+
   function getOverlay()  { return document.getElementById('search-overlay'); }
   function getInput()    { return document.getElementById('search-input'); }
   function getResults()  { return document.getElementById('search-results'); }
 
-  // ---- Open / Close Search -------------------------------------------
   function openSearch() {
     const overlay = getOverlay();
     if (!overlay) return;
@@ -130,7 +215,6 @@
     if (overlay) overlay.classList.remove('open');
   }
 
-  // ---- Search Logic (Title & Snippet Matching) -----------------------
   function search(query) {
     if (!query || query.length < 1) return PAGE_INDEX.slice(0, 8);
 
@@ -140,14 +224,10 @@
       const title = page.title.toLowerCase();
       const snippet = (page.snippet || '').toLowerCase();
 
-      // Exact title match
       if (title === q) score += 100;
-      // Title starts with query
       else if (title.startsWith(q)) score += 60;
-      // Title contains query
       else if (title.includes(q)) score += 40;
 
-      // Snippet match
       if (snippet.includes(q)) score += 20;
 
       return { ...page, score };
@@ -158,7 +238,6 @@
     return scored.slice(0, 12);
   }
 
-  // ---- Render Search Results -----------------------------------------
   function highlightMatch(text, query) {
     if (!query) return text;
     const idx = text.toLowerCase().indexOf(query.toLowerCase());
@@ -191,8 +270,9 @@
   function init() {
     injectHeader();
     injectSearchModal();
+    initBootScreen();
+    initPageTransitions();
     loadIndex();
-
     // Search trigger links
     document.body.addEventListener('click', e => {
       const trigger = e.target.closest('[data-action="open-search"]');
@@ -212,12 +292,8 @@
       if (overlay && e.target === overlay) closeSearch();
     });
 
-    // Keyboard: Ctrl+K / Cmd+K to open, Escape to close
+    // Escape closes the search overlay.
     document.addEventListener('keydown', e => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        openSearch();
-      }
       if (e.key === 'Escape') closeSearch();
     });
 

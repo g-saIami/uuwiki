@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uncanny Database</title>
+  <meta name="description" content="A sample wiki page demonstrating all available components, tables, image boxes, and HTML classes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-root="../">
+
+  <!-- Dynamic Header injected via js/search.js -->
+  <div id="wiki-header"></div>
+
+  <!-- ===== Breadcrumbs ===== -->
+  <div class="breadcrumbs" id="breadcrumbs">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumbs__sep"></span>
+    <a href="#">Articles</a>
+    <span class="breadcrumbs__sep"></span>
+    <span>Uncanny Udarnik</span>
+  </div>
+
+  <!-- ===== Page Content ===== -->
+  <main class="page-wrap" id="main-content">
+
+    <blockquote>
+      <p>"Left is worser... I choose right"</p>
+      <p>— Turret, Chairman of UU</p>
+    </blockquote>
+
+    <div class="heading-divider">
+      <h1>UNCANNY UDARNIK</h1>
+    </div>
+    <div class="clearfix">
+      <aside class="group-profile" aria-label="Uncanny Udarnik profile">
+        <h2 class="group-profile__name">Uncanny Udarnik</h2>
+        <p class="group-profile__type">UU</p>
+        <img src="../assets/mainlogo.png" alt="Uncanny Udarnik insignia" class="group-profile__image">
+        <dl class="group-profile__details">
+          <div class="group-profile__row">
+            <dt>headquarters</dt>
+            <dd>N/A Central Facility</dd>
+          </div>
+          <div class="group-profile__row">
+            <dt>Founder</dt>
+            <dd>Turret ✝</dd>
+          </div>
+          <div class="group-profile__row">
+            <dt>Interim System Authority</dt>
+            <dd>slabwork ai</dd>
+          </div>
+            <div class="group-profile__row">
+            <dt>Board</dt>
+            <dd>salami - CEO</dd>
+            <dd>smallgear - CTO</dd>
+            <dd>retrouge - COO</dd>
+            <dd>money man john - CFO</dd>
+          </div>
+          <div class="group-profile__row">
+            <dt>Sections</dt>
+            <dd><a href="/pages/ust">Uncanny Strike Teams</a></dd>
+            <dd><a href="/pages/cl">Canny Logistics</a></dd>
+          </div>
+        </dl>
+      </aside>
+
+      <p>
+      Uncanny Udarnik is a international megacorporation formed from the discovery of an anomolous resource found within carbon based objects, mostly coal.
+       it uses the coal, <a href="../hcc.html">hydro catalysed carbon</a>, to facilitate its advanced technology and logistics.</p>
+       <p>the main operations consist of researching and extracting hcc, offense and logistics</p>
+       <p>the uu does not have some sort of mega super military as it is a company,
+         it has a non divisioned <a href="../structure.html">section</a> of armed employees under itself and an elite version under its <a href="../hcc.html">space solutions</a> subsidary. </p>
+    <div>
+<div style="height: 50px;"></div>
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- INFO PANEL / ANOMALY BOX                     -->
+    <!-- ============================================ -->
+    <h2>Info Panel</h2>
+    <p>The <code>.info-panel</code> class creates a structured data card — great for object profiles, character sheets, or article metadata.</p>
+
+    <div class="info-panel">
+      <div class="info-panel__header">Subject File</div>
+      <div class="info-panel__row">
+        <div class="info-panel__label">Designation</div>
+        <div class="info-panel__value">UW-001</div>
+      </div>
+      <div class="info-panel__row">
+        <div class="info-panel__label">Class</div>
+        <div class="info-panel__value">Unresolved</div>
+      </div>
+      <div class="info-panel__row">
+        <div class="info-panel__label">Status</div>
+        <div class="info-panel__value">Active monitoring</div>
+      </div>
+      <div class="info-panel__row">
+        <div class="info-panel__label">Description</div>
+        <div class="info-panel__value">A sample entry demonstrating the info panel layout. Replace this content with actual article data.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- IMAGE BOX                                    -->
+    <!-- ============================================ -->
+    <h2>Image Box</h2>
+    <p>Use <code>.image-box</code> for captioned images. Add <code>--float-right</code>, <code>--float-left</code>, <code>--small</code>, or <code>--medium</code> modifiers.</p>
+
+    <div class="clearfix">
+      <div class="image-box image-box--float-right image-box--small">
+        <img src="https://placehold.co/300x200/0f1628/4682B4?text=Image" alt="Placeholder image">
+        <div class="image-box__caption">Fig. 1 — A sample image with a caption underneath.</div>
+      </div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus
+        hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut
+        eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum
+        non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
+      </p>
+      <p>
+        Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis
+        tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a
+        porttitor lectus condimentum laoreet.
+      </p>
+    </div>
+
+    <div class="image-box image-box--medium">
+      <img src="https://placehold.co/450x250/0f1628/4682B4?text=Wide+Image" alt="Wide placeholder">
+      <div class="image-box__caption">Fig. 2 — A centered medium-width image box.</div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- TABLES                                       -->
+    <!-- ============================================ -->
+    <h2>Tables</h2>
+    <p>Use <code>.wiki-table</code> as the base. Add <code>--striped</code>, <code>--bordered</code>, or <code>--compact</code> modifiers.</p>
+
+    <h3>Default Table</h3>
+    <table class="wiki-table">
+      <thead>
+        <tr><th>Designation</th><th>Class</th><th>Status</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>UW-001</td><td>Unresolved</td><td>Active</td><td>High</td></tr>
+        <tr><td>UW-002</td><td>Contained</td><td>Dormant</td><td>Low</td></tr>
+        <tr><td>UW-003</td><td>Neutralized</td><td>Archived</td><td>None</td></tr>
+        <tr><td>UW-004</td><td>Pending</td><td>Under Review</td><td>Medium</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Striped &amp; Bordered Table</h3>
+    <table class="wiki-table wiki-table--striped wiki-table--bordered">
+      <thead>
+        <tr><th>Property</th><th>Value</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Temperature</td><td>-12 °C</td><td>Below threshold</td></tr>
+        <tr><td>Pressure</td><td>1.2 atm</td><td>Within range</td></tr>
+        <tr><td>Luminosity</td><td>340 lux</td><td>Fluctuating</td></tr>
+        <tr><td>Duration</td><td>72 hrs</td><td>Ongoing</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- NOTICE BOXES                                 -->
+    <!-- ============================================ -->
+    <h2>Notice Boxes</h2>
+    <p>Use <code>.notice</code> with <code>--info</code>, <code>--warning</code>, <code>--danger</code>, or <code>--success</code>.</p>
+
+    <div class="notice notice--info">
+      <div class="notice__title">ℹ Information</div>
+      This is an informational notice. Use it for supplementary context or tips.
+    </div>
+
+    <div class="notice notice--warning">
+      <div class="notice__title">⚠ Warning</div>
+      This content may be out of date. Please verify with a primary source.
+    </div>
+
+    <div class="notice notice--danger">
+      <div class="notice__title">✖ Danger</div>
+      Access to this section is restricted. Unauthorized viewing is logged.
+    </div>
+
+    <div class="notice notice--success">
+      <div class="notice__title">✔ Success</div>
+      This entry has been verified and approved by the editorial board.
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- BLOCKQUOTE                                   -->
+    <!-- ============================================ -->
+    <h2>Blockquote</h2>
+
+    <blockquote>
+      <p>"The boundaries of the known are merely the starting coordinates for exploration."</p>
+      <p>— Dr. ████████, Field Report 12-C</p>
+    </blockquote>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- CODE BLOCKS                                  -->
+    <!-- ============================================ -->
+    <h2>Code</h2>
+    <p>Inline: <code>variable_name</code>, and block:</p>
+
+    <pre><code>$ cat /var/log/uncanny.log
+[2026-09-22 23:14:07] STATUS: Nominal
+[2026-09-22 23:14:12] ALERT:  Anomalous reading at Sector 7-G
+[2026-09-22 23:14:15] ACTION: Dispatching response team
+</code></pre>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- COLLAPSIBLE                                  -->
+    <!-- ============================================ -->
+    <h2>Collapsible Section</h2>
+    <p>Use <code>.collapsible</code> with a <code>.collapsible__toggle</code> button and <code>.collapsible__body</code> div.</p>
+
+    <div class="collapsible">
+      <button class="collapsible__toggle">Click to expand — Supplementary Data</button>
+      <div class="collapsible__body">
+        <p>This content is hidden by default and revealed when the toggle is clicked. Perfect for spoilers, long data dumps, or supplementary information that doesn't need to be visible immediately.</p>
+        <table class="wiki-table wiki-table--compact">
+          <thead><tr><th>Reading</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Alpha</td><td>0.72</td></tr>
+            <tr><td>Beta</td><td>1.05</td></tr>
+            <tr><td>Gamma</td><td>0.33</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible__toggle">Click to expand — Interview Log</button>
+      <div class="collapsible__body">
+        <blockquote>
+          <p>"I saw it near the tree line. It wasn't moving, but I could tell it was watching."</p>
+        </blockquote>
+        <p>Interview continued for approximately 45 minutes. Full transcript available upon request.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- TABS                                         -->
+    <!-- ============================================ -->
+    <h2>Tab Group</h2>
+    <p>Use <code>.tab-group</code> with <code>.tab-group__btn[data-tab]</code> buttons and matching <code>.tab-group__panel</code> divs.</p>
+
+    <div class="tab-group">
+      <div class="tab-group__nav">
+        <button class="tab-group__btn active" data-tab="tab-overview">Overview</button>
+        <button class="tab-group__btn" data-tab="tab-history">History</button>
+        <button class="tab-group__btn" data-tab="tab-notes">Notes</button>
+      </div>
+      <div class="tab-group__panel active" id="tab-overview">
+        <p>This is the <strong>Overview</strong> tab. Tabs are useful for organising related content into switchable views without leaving the page.</p>
+      </div>
+      <div class="tab-group__panel" id="tab-history">
+        <p>Historical records indicate first contact in ████. Subsequent encounters documented in Field Reports 1 through 7.</p>
+      </div>
+      <div class="tab-group__panel" id="tab-notes">
+        <p>Researcher notes: Further investigation required. Cross-reference with UW-003 containment logs.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- CONTENT BOX                                  -->
+    <!-- ============================================ -->
+    <h2>Content Boxes</h2>
+
+    <div class="grid-2">
+      <div class="content-box">
+        <h3 class="mt-0">Default Box</h3>
+        <p class="mb-0 text-small">A simple raised surface for grouping content.</p>
+      </div>
+      <div class="content-box content-box--accent">
+        <h3 class="mt-0">Accent Box</h3>
+        <p class="mb-0 text-small">Add <code>--accent</code> for a highlighted border with glow.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- TAGS / BADGES                                -->
+    <!-- ============================================ -->
+    <h2>Tags</h2>
+    <div>
+      <span class="tag">unresolved</span>
+      <span class="tag">field-report</span>
+      <span class="tag">classified</span>
+      <span class="tag">active</span>
+      <span class="tag">sector-7</span>
+    </div>
+
+
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- GRID LAYOUTS                                 -->
+    <!-- ============================================ -->
+    <h2>Grid Layouts</h2>
+    <p>Use <code>.grid-2</code> or <code>.grid-3</code> for responsive columns.</p>
+
+    <div class="grid-3">
+      <div class="content-box"><h4 class="mt-0 text-accent">Column 1</h4><p class="mb-0 text-small">Three column grid item.</p></div>
+      <div class="content-box"><h4 class="mt-0 text-accent">Column 2</h4><p class="mb-0 text-small">Three column grid item.</p></div>
+      <div class="content-box"><h4 class="mt-0 text-accent">Column 3</h4><p class="mb-0 text-small">Three column grid item.</p></div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================ -->
+    <!-- FOOTNOTES                                    -->
+    <!-- ============================================ -->
+    <h2>Footnotes</h2>
+    <p>
+      Certain phenomena remain poorly understood.<sup class="footnote-ref">[1]</sup>
+      Further study is recommended before reclassification.<sup class="footnote-ref">[2]</sup>
+    </p>
+
+    <div class="footnotes">
+      <ol>
+        <li>Based on preliminary data collected between 2024–2026.</li>
+        <li>Pending approval from the Review Board, ref: Document UW-001-A.</li>
+      </ol>
+    </div>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" id="site-footer">
+    <p>Uncanny Udarnik &copy; 2026</p>
+  </footer>
+
+  <script src="../js/search.js"></script>
+</body>
+</html>

@@ -752,18 +752,6 @@ li { margin-bottom: 0.3rem; }
   border-radius: 0;
   padding: 0 2px;
 }
-.search-shortcut {
-  display: inline-block;
-  font-size: 0.65rem;
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  border-radius: 0;
-  padding: 0.1rem 0.35rem;
-  color: var(--text-muted);
-  margin-left: 0.3rem;
-  vertical-align: middle;
-}
-
 /* --- Footer --- */
 .site-footer {
   background: var(--bg-dark);
@@ -795,6 +783,71 @@ li { margin-bottom: 0.3rem; }
 .mb-3 { margin-bottom: 1.5rem; }
 
 .clearfix::after { content: ''; display: table; clear: both; }
+
+/* --- Organisation Profile Card --- */
+.group-profile {
+  float: right;
+  width: min(280px, 42%);
+  margin: 0 0 1.25rem 1.5rem;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--accent-dim);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.35), 0 0 10px var(--accent-glow);
+}
+.group-profile__banner {
+  padding: 0.4rem 0.7rem;
+  background: linear-gradient(90deg, var(--accent-dim), var(--bg-raised));
+  border-bottom: 1px solid var(--accent);
+  color: var(--text-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.group-profile__name {
+  margin: 0;
+  padding: 0.75rem 0.8rem 0.1rem;
+  color: var(--accent-light);
+  font-size: 1.12rem;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+}
+.group-profile__type {
+  margin: 0;
+  padding: 0 0.8rem 0.6rem;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+.group-profile__image {
+  display: block;
+  width: calc(100% - 1rem);
+  height: 190px;
+  margin: 0 0.5rem 0.5rem;
+  padding: 0.5rem;
+  object-fit: contain;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+}
+.group-profile__details {
+  margin: 0;
+}
+.group-profile__row {
+  padding: 0.4rem 0.7rem;
+  border-top: 1px solid var(--border);
+}
+.group-profile__row dt {
+  color: var(--accent-light);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.group-profile__row dd {
+  margin: 0.08rem 0 0;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
 
 .visually-hidden {
   position: absolute;
@@ -830,6 +883,11 @@ li { margin-bottom: 0.3rem; }
     margin: 1.5rem 0;
   }
   .info-panel__row { flex-direction: column; }
+  .group-profile {
+    float: none;
+    width: min(100%, 360px);
+    margin: 0 auto 1.5rem;
+  }
   .info-panel__label { width: 100%; }
   h1 { font-size: 1.4rem; }
 }
@@ -885,7 +943,7 @@ li { margin-bottom: 0.3rem; }
   font-size: 0.82rem;
 }
 
-/* --- Main Portal Cards & Grid --- */
+/* --- Main Portal Cards & Grid (1:1 Ratio) --- */
 .portal-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -900,7 +958,10 @@ li { margin-bottom: 0.3rem; }
 
 .portal-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 220px;
+  aspect-ratio: 1.8 / 1;
   background: var(--bg-surface);
   border: 1px solid var(--accent-dim);
   border-radius: 0;
@@ -909,51 +970,70 @@ li { margin-bottom: 0.3rem; }
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
   position: relative;
+  isolation: isolate;
+}
+.portal-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(5, 8, 18, 0.94) 0%, rgba(5, 8, 18, 0.78) 56%, rgba(5, 8, 18, 0.28) 100%);
+  transition: background var(--transition);
 }
 .portal-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--accent);
   box-shadow: 0 8px 25px var(--accent-glow), 0 0 12px rgba(70, 130, 180, 0.4);
   border-bottom-color: var(--accent);
 }
 .portal-card__image {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-bottom: 1px solid var(--border);
+  position: absolute;
+  inset: 5%;
+  z-index: -2;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
   transition: opacity var(--transition), transform var(--transition);
-  background: var(--bg-dark);
+  display: block;
 }
 .portal-card:hover .portal-card__image {
-  opacity: 0.92;
-  transform: scale(1.02);
+  opacity: 0.85;
+  transform: scale(1.025);
 }
 .portal-card__content {
+  width: 100%;
   padding: 1.25rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  position: relative;
 }
 .portal-card__title {
   font-family: var(--mono);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--text-heading);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .portal-card__description {
   font-size: 0.85rem;
-  color: var(--text-primary);
+  color: #e1e8f1;
+  max-width: 78%;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.95);
   margin-bottom: 1.2rem;
   line-height: 1.6;
   flex: 1;
 }
 .portal-card__footer {
+  margin-top: auto;
+  align-self: flex-end;
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--accent-light);
+  color: var(--text-heading);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   display: flex;
@@ -961,11 +1041,117 @@ li { margin-bottom: 0.3rem; }
   gap: 0.4rem;
 }
 .portal-card__footer::after {
-  content: '→';
+  content: '';
+}
+.portal-card__footer {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-heading);
+  text-shadow: 0 1px 5px #000;
   transition: transform var(--transition);
 }
 .portal-card:hover .portal-card__footer::after {
   transform: translateX(4px);
+}
+@media (max-width: 700px) {
+  .portal-card {
+    min-height: 190px;
+    aspect-ratio: 1.5 / 1;
+  }
+  .portal-card__description { max-width: 90%; }
+}
+
+/* --- Compact / Mini Portals (Secondary Portal Section) --- */
+.portal-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+@media (max-width: 700px) {
+  .portal-mini-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portal-mini {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.portal-mini:hover {
+  border-color: var(--accent-dim);
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.portal-mini__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background: rgba(70, 130, 180, 0.14);
+  border-left: 4px solid var(--accent);
+  border-bottom: 1px solid var(--border);
+  color: var(--accent-light);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: background var(--transition), color var(--transition);
+}
+.portal-mini__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+.portal-mini__image {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border: 1px solid var(--accent-dim);
+  background: var(--bg-dark);
+  flex: 0 0 auto;
+}
+.portal-mini__header:hover {
+  background: rgba(70, 130, 180, 0.25);
+  color: var(--accent);
+  border-bottom-color: var(--accent-dim);
+}
+.portal-mini__arrow {
+  font-size: 0.95rem;
+  color: var(--accent);
+  transition: transform var(--transition);
+}
+.portal-mini__header:hover .portal-mini__arrow {
+  transform: translateX(4px);
+}
+
+.portal-mini__body {
+  padding: 0.85rem 1rem 0.5rem;
+  font-size: 0.84rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.portal-mini__footer {
+  padding: 0.4rem 1rem 0.75rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.portal-mini__footer a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+}
+.portal-mini__footer a:hover {
+  color: var(--accent-light);
+  border-bottom-color: var(--accent);
 }
 
 /* --- Two / Three Column Grid --- */
@@ -983,4 +1169,104 @@ li { margin-bottom: 0.3rem; }
 }
 @media (max-width: 600px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   TERMINAL BOOT SEQUENCE & SCREEN TRANSITIONS
+   ============================================================ */
+
+/* --- Fullscreen Terminal Boot Overlay --- */
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  background: #050812;
+  background-image: 
+    radial-gradient(circle at 50% 45%, rgba(70, 130, 180, 0.3) 0%, rgba(11, 17, 32, 0.95) 60%, #03050c 100%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 1px, transparent 1px, transparent 3px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.boot-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.boot-container {
+  max-width: min(420px, 100%);
+  width: 100%;
+  text-align: center;
+}
+
+.boot-logo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 auto 1.25rem;
+  display: block;
+  border: 1px solid var(--accent-dim);
+  background: var(--bg-dark);
+  filter: drop-shadow(0 0 10px var(--accent-glow));
+}
+
+/* Progress Bar Container */
+.boot-progress-wrap {
+  width: 100%;
+  background: var(--bg-dark);
+  border: 1px solid var(--accent-dim);
+  height: 22px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.boot-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-light));
+  box-shadow: 0 0 12px var(--accent-glow);
+  transition: width 0.1s linear;
+}
+.boot-progress-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 4px #000;
+}
+
+/* --- Page Transition CRT Glitch Overlay --- */
+.crt-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: #050812;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease-in-out;
+}
+.crt-transition-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.crt-transition-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-light);
+  box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent);
+  transform: translateY(-50%);
 }
